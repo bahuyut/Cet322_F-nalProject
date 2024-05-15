@@ -7,6 +7,12 @@ namespace EduHub.Models
     {
         public string? Name { get; set; }
 
-        public string? Role { get; set; }
+        public string? UserType { get; set; }
+
+        public string? Department { get; set; }
+
     }
+
+
 }
+

@@ -12,6 +12,6 @@ namespace EduHub.Models
         public DateTime DueDate { get; set; }
 
         public string? EduUserId { get; set; }
-        public virtual EduUser? EduUser { get; set; }
+        
     }
 }

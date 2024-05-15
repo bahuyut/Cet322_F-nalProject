@@ -24,4 +24,10 @@
     <PackageReference Include="Microsoft.DotNet.Scaffolding.Shared" Version="7.0.12" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Migrations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
 </Project>

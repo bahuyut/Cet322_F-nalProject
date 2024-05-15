@@ -20,24 +20,8 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/Views/Assignment/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXNzaWdubWVudC9DcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/Views/Assignment/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXNzaWdubWVudC9EZWxldGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/Views/Assignment/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXNzaWdubWVudC9EZXRhaWxzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/Views/Assignment/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXNzaWdubWVudC9FZGl0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/Views/Assignment/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXNzaWdubWVudC9JbmRleC5jc2h0bWw=
+[/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/Pages/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/Views/EduUser/Create.cshtml]

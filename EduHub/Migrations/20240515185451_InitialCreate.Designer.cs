@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EduHub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240515120539_InitialCreate")]
+    [Migration("20240515185451_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -63,8 +63,6 @@ namespace EduHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EduUserId");
-
                     b.ToTable("Assignments");
                 });
 
@@ -78,6 +76,9 @@ namespace EduHub.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Department")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -113,9 +114,6 @@ namespace EduHub.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Role")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
 
@@ -124,6 +122,9 @@ namespace EduHub.Migrations
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserType")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -308,15 +309,6 @@ namespace EduHub.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("EduHub.Models.Assignment", b =>
-                {
-                    b.HasOne("EduHub.Models.EduUser", "EduUser")
-                        .WithMany()
-                        .HasForeignKey("EduUserId");
-
-                    b.Navigation("EduUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
