@@ -23,9 +23,17 @@ namespace EduHub.Controllers
         }
 
         // GET: Resource
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Resources.ToListAsync());
+            var resources = from r in _context.Resources
+                            select r;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                resources = resources.Where(r => r.Title.Contains(searchString) || r.Description.Contains(searchString));
+            }
+
+            return View(await resources.ToListAsync());
         }
 
         // GET: Resource/Details/5
