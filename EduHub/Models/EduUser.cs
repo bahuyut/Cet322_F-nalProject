@@ -11,6 +11,8 @@ namespace EduHub.Models
 
         public string? Department { get; set; }
 
+        public Assignment[]? Assignments { get; set; }
+
     }
 
 

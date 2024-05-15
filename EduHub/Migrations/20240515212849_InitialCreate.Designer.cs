@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EduHub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240515185451_InitialCreate")]
+    [Migration("20240515212849_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -62,6 +62,8 @@ namespace EduHub.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EduUserId");
 
                     b.ToTable("Assignments");
                 });
@@ -311,6 +313,13 @@ namespace EduHub.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("EduHub.Models.Assignment", b =>
+                {
+                    b.HasOne("EduHub.Models.EduUser", null)
+                        .WithMany("Assignments")
+                        .HasForeignKey("EduUserId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -360,6 +369,11 @@ namespace EduHub.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("EduHub.Models.EduUser", b =>
+                {
+                    b.Navigation("Assignments");
                 });
 #pragma warning restore 612, 618
         }
