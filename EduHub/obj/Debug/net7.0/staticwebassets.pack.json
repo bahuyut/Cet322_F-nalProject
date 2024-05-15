@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets/EduHub.bundle.scp.css"
     },
     {
+      "Id": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/.DS_Store",
+      "PackagePath": "staticwebassets/.DS_Store"
+    },
+    {
       "Id": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
@@ -243,6 +247,10 @@
     {
       "Id": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/lib/jquery/dist/jquery.min.map",
       "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
+    },
+    {
+      "Id": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/uploads/b58e680f-7afe-4599-80e7-6153dfde2fcd_Chem 471 Midterm.pdf",
+      "PackagePath": "staticwebassets/uploads/b58e680f-7afe-4599-80e7-6153dfde2fcd_Chem 471 Midterm.pdf"
     },
     {
       "Id": "obj/Debug/net7.0/staticwebassets/msbuild.EduHub.Microsoft.AspNetCore.StaticWebAssets.props",

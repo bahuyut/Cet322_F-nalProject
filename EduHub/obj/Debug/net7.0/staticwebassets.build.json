@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Yj62WL8X3zkEupG+ZHw9eim1jroe9Zoz89a6IaZb1hQ=",
+  "Hash": "BQUIYXmheNulPDjYtGHG3AdckQkvmsx4FNfwy0JnNjk=",
   "Source": "EduHub",
   "BasePath": "_content/EduHub",
   "Mode": "Default",
@@ -1071,6 +1071,23 @@
       "OriginalItemSpec": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/obj/Debug/net7.0/scopedcss/projectbundle/EduHub.bundle.scp.css"
     },
     {
+      "Identity": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/.DS_Store",
+      "SourceId": "EduHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/",
+      "BasePath": "_content/EduHub",
+      "RelativePath": ".DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/.DS_Store"
+    },
+    {
       "Identity": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/css/site.css",
       "SourceId": "EduHub",
       "SourceType": "Discovered",
@@ -2089,6 +2106,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Identity": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/uploads/b58e680f-7afe-4599-80e7-6153dfde2fcd_Chem 471 Midterm.pdf",
+      "SourceId": "EduHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/",
+      "BasePath": "_content/EduHub",
+      "RelativePath": "uploads/b58e680f-7afe-4599-80e7-6153dfde2fcd_Chem 471 Midterm.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/b58e680f-7afe-4599-80e7-6153dfde2fcd_Chem 471 Midterm.pdf"
     }
   ]
 }

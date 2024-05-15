@@ -73,6 +73,10 @@ namespace EduHub.Controllers
                     }
                 }
 
+                // Get uploader name
+                string uploaderName = User.Identity.Name;
+                resource.UploaderName = uploaderName;
+
                 _context.Add(resource);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -99,7 +103,7 @@ namespace EduHub.Controllers
         // POST: Resource/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,FilePath")] Resource resource)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,FilePath,UploaderName")] Resource resource)
         {
             if (id != resource.Id)
             {
