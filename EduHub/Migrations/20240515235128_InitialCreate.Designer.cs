@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EduHub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240515214448_InitialCreate")]
+    [Migration("20240515235128_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -33,6 +33,9 @@ namespace EduHub.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UploaderName")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

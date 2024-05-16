@@ -17,6 +17,7 @@ namespace EduHub.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    UploaderName = table.Column<string>(type: "TEXT", nullable: true),
                     Title = table.Column<string>(type: "TEXT", nullable: true),
                     Content = table.Column<string>(type: "TEXT", nullable: true),
                     PostedDate = table.Column<DateTime>(type: "TEXT", nullable: false)

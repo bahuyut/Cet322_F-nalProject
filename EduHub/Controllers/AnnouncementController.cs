@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -59,8 +60,11 @@ namespace EduHub.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Otomatik olarak postedDate'i şu anki tarih ve saat olarak ayarlayın
+                // Otomatik olarak postedDate'i şu anki tarih ve saat olarak ayarla
                 announcement.PostedDate = DateTime.Now;
+
+                // UploaderName'i oturum açmış kullanıcının ismiyle doldur
+                announcement.UploaderName = User.Identity.Name;
 
                 _context.Add(announcement);
                 await _context.SaveChangesAsync();
@@ -90,7 +94,7 @@ namespace EduHub.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,PostedDate")] Announcement announcement)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UploaderName,Title,Content,PostedDate")] Announcement announcement)
         {
             if (id != announcement.Id)
             {
