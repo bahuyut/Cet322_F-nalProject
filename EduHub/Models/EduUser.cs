@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
 namespace EduHub.Models
@@ -11,10 +12,6 @@ namespace EduHub.Models
 
         public string? Department { get; set; }
 
-        public Assignment[]? Assignments { get; set; }
-
+        public ICollection<Assignment>? Assignments { get; set; }
     }
-
-
 }
-

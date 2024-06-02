@@ -26,8 +26,12 @@
 
   <ItemGroup>
     <None Remove="Migrations\" />
+    <None Remove="Views\Assignments\" />
+    <None Remove="Views\Grades\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="Views\Assignments\" />
+    <Folder Include="Views\Grades\" />
   </ItemGroup>
 </Project>

@@ -318,9 +318,11 @@ namespace EduHub.Migrations
 
             modelBuilder.Entity("EduHub.Models.Assignment", b =>
                 {
-                    b.HasOne("EduHub.Models.EduUser", null)
+                    b.HasOne("EduHub.Models.EduUser", "EduUser")
                         .WithMany("Assignments")
                         .HasForeignKey("EduUserId");
+
+                    b.Navigation("EduUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -1,0 +1,59 @@
+@model IEnumerable<EduHub.Models.Assignment>
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<EduHub.Models.EduUser> UserManager
+@{
+    ViewData["Title"] = "Assignments";
+    var user = await UserManager.GetUserAsync(User);
+}
+
+<h2>Assignments</h2>
+
+@if (user != null && user.UserType == "teacher")
+{
+    <p>
+        <a asp-action="Create">Create New Assignment</a>
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DueDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueDate)
+                </td>
+                <td>
+                    @if (user != null && user.UserType == "student")
+                    {
+                        <a asp-action="Submit" asp-route-id="@item.Id">Submit Assignment</a>
+                    }
+                    else if (user != null && user.UserType == "teacher" && !string.IsNullOrEmpty(item.FilePath))
+                    {
+                        <a href="@Url.Action("Download", "Assignments", new { id = item.Id })">Download</a>                      
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

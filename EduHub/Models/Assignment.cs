@@ -1,5 +1,6 @@
-﻿
-using System;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EduHub.Models
 {
@@ -12,6 +13,8 @@ namespace EduHub.Models
         public DateTime DueDate { get; set; }
 
         public string? EduUserId { get; set; }
-        
+
+        [ForeignKey("EduUserId")]
+        public EduUser? EduUser { get; set; }
     }
 }

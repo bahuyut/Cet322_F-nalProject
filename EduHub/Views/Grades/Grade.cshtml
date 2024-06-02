@@ -1,0 +1,38 @@
+@model EduHub.Models.Grade
+
+@{
+    ViewData["Title"] = "Grade Assignments";
+}
+
+<h2>Grade Assignments</h2>
+
+<form asp-action="Grade">
+    <input type="hidden" asp-for="UserId" value="@ViewBag.StudentId" />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Assignment
+                </th>
+                <th>
+                    Score
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var assignment in ViewBag.Assignments)
+            {
+                <tr>
+                    <td>
+                        @assignment.Title
+                        <input type="hidden" name="assignmentId" value="@assignment.Id" />
+                    </td>
+                    <td>
+                        <input type="number" name="score" step="0.01" required />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

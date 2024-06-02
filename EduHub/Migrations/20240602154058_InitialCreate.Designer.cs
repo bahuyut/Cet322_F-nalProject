@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EduHub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240515235128_InitialCreate")]
+    [Migration("20240602154058_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -321,9 +321,11 @@ namespace EduHub.Migrations
 
             modelBuilder.Entity("EduHub.Models.Assignment", b =>
                 {
-                    b.HasOne("EduHub.Models.EduUser", null)
+                    b.HasOne("EduHub.Models.EduUser", "EduUser")
                         .WithMany("Assignments")
                         .HasForeignKey("EduUserId");
+
+                    b.Navigation("EduUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

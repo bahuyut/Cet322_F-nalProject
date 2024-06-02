@@ -11,7 +11,7 @@ public class ApplicationDbContext : IdentityDbContext<EduUser>
         : base(options)
     {
     }
-    //public DbSet<EduUser> EduUsers { get; set; }
+    public DbSet<EduUser> EduUsers { get; set; }
     public DbSet<Announcement> Announcements { get; set; }
     public DbSet<Resource> Resources { get; set; }
     public DbSet<Assignment> Assignments { get; set; }
