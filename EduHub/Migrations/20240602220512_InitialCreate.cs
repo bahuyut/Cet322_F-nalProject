@@ -70,21 +70,6 @@ namespace EduHub.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Grades",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    AssignmentId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Score = table.Column<double>(type: "REAL", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Grades", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Resources",
                 columns: table => new
                 {
@@ -228,6 +213,27 @@ namespace EduHub.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Grades",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<string>(type: "TEXT", nullable: true),
+                    AssignmentId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Score = table.Column<double>(type: "REAL", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Grades", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Grades_Assignments_AssignmentId",
+                        column: x => x.AssignmentId,
+                        principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -269,6 +275,11 @@ namespace EduHub.Migrations
                 name: "IX_Assignments_EduUserId",
                 table: "Assignments",
                 column: "EduUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Grades_AssignmentId",
+                table: "Grades",
+                column: "AssignmentId");
         }
 
         /// <inheritdoc />
@@ -293,9 +304,6 @@ namespace EduHub.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Assignments");
-
-            migrationBuilder.DropTable(
                 name: "Grades");
 
             migrationBuilder.DropTable(
@@ -303,6 +311,9 @@ namespace EduHub.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Assignments");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

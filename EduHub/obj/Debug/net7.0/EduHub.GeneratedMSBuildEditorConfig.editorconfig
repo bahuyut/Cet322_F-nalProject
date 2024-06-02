@@ -108,8 +108,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR3JhZGVzL0dyYWRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/Views/Grades/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR3JhZGVzL0luZGV4LmNzaHRtbA==
+[/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/Views/Grades/StudentIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR3JhZGVzL1N0dWRlbnRJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/Views/Grades/TeacherIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR3JhZGVzL1RlYWNoZXJJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/Views/Home/Index.cshtml]

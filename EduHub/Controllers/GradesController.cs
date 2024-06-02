@@ -1,14 +1,13 @@
 using System.Linq;
+using System.Threading.Tasks;
 using EduHub.Data;
 using EduHub.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace EduHub.Controllers
 {
-    [Authorize(Roles = "teacher")]
     public class GradesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,17 +19,50 @@ namespace EduHub.Controllers
             _userManager = userManager;
         }
 
-        // GET: Grades
-        public IActionResult Index()
+        // GET: Grades/Index
+        public async Task<IActionResult> Index()
         {
-            var students = _userManager.Users.Where(u => u.UserType == "student").ToList();
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Forbid();
+            }
+
+            if (user.UserType == "teacher")
+            {
+                return RedirectToAction(nameof(TeacherIndex));
+            }
+            else if (user.UserType == "student")
+            {
+                return RedirectToAction(nameof(StudentIndex));
+            }
+
+            return Forbid();
+        }
+
+        // GET: Grades/TeacherIndex
+        public async Task<IActionResult> TeacherIndex()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null || user.UserType != "teacher")
+            {
+                return Forbid();
+            }
+
+            var students = await _userManager.Users.Where(u => u.UserType == "student").ToListAsync();
             return View(students);
         }
 
         // GET: Grades/Grade/5
-        public IActionResult Grade(string studentId)
+        public async Task<IActionResult> Grade(string studentId)
         {
-            var assignments = _context.Assignments.ToList();
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null || user.UserType != "teacher")
+            {
+                return Forbid();
+            }
+
+            var assignments = await _context.Assignments.ToListAsync();
             ViewBag.Assignments = assignments;
             ViewBag.StudentId = studentId;
             return View();
@@ -39,17 +71,40 @@ namespace EduHub.Controllers
         // POST: Grades/Grade/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Grade(string studentId, int assignmentId, double score)
+        public async Task<IActionResult> Grade(string studentId, int assignmentId, double score)
         {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null || user.UserType != "teacher")
+            {
+                return Forbid();
+            }
+
             var grade = new Grade
             {
-                UserId = int.Parse(studentId),
+                UserId = studentId,  // GUID formatındaki string türü
                 AssignmentId = assignmentId,
                 Score = score
             };
+
             _context.Add(grade);
-            _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(TeacherIndex));
+        }
+
+        // GET: Grades/StudentIndex
+        public async Task<IActionResult> StudentIndex()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null || user.UserType != "student")
+            {
+                return Forbid();
+            }
+
+            var grades = await _context.Grades
+                .Where(g => g.UserId == user.Id)
+                .Include(g => g.Assignment)
+                .ToListAsync();
+            return View(grades);
         }
     }
 }

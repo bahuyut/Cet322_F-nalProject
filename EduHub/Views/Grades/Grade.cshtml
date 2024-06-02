@@ -7,7 +7,7 @@
 <h2>Grade Assignments</h2>
 
 <form asp-action="Grade">
-    <input type="hidden" asp-for="UserId" value="@ViewBag.StudentId" />
+    <input type="hidden" name="studentId" value="@ViewBag.StudentId" />
     <table class="table">
         <thead>
             <tr>

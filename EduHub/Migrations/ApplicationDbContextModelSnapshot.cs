@@ -153,10 +153,12 @@ namespace EduHub.Migrations
                     b.Property<double>("Score")
                         .HasColumnType("REAL");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AssignmentId");
 
                     b.ToTable("Grades");
                 });
@@ -323,6 +325,17 @@ namespace EduHub.Migrations
                         .HasForeignKey("EduUserId");
 
                     b.Navigation("EduUser");
+                });
+
+            modelBuilder.Entity("EduHub.Models.Grade", b =>
+                {
+                    b.HasOne("EduHub.Models.Assignment", "Assignment")
+                        .WithMany()
+                        .HasForeignKey("AssignmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Assignment");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

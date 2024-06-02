@@ -1,0 +1,33 @@
+@model List<EduHub.Models.Grade>
+
+@{
+    ViewData["Title"] = "My Grades";
+}
+
+<h2>My Grades</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Assignment
+            </th>
+            <th>
+                Score
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var grade in Model)
+        {
+            <tr>
+                <td>
+                    @grade.Assignment.Title
+                </td>
+                <td>
+                    @grade.Score
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
