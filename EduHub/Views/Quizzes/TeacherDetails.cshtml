@@ -4,29 +4,77 @@
     ViewData["Title"] = "Quiz Details";
 }
 
-<h2>@Model.Title</h2>
+<h2>Quiz Details</h2>
 
-<h3>Questions</h3>
-@foreach (var question in Model.Questions)
-{
-    <div>
-        <strong>@question.Text</strong>
-        <br />
-        <label>Option A:</label> @question.OptionA <br />
-        <label>Option B:</label> @question.OptionB <br />
-        <label>Option C:</label> @question.OptionC <br />
-        <label>Option D:</label> @question.OptionD <br />
-        <label>Correct Option:</label> @question.CorrectOption <br />
-    </div>
-}
+<div>
+    <h4>Quiz</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Title
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+    </dl>
 
-<h3>Students' Scores</h3>
-@if (Model.StudentQuizzes != null && Model.StudentQuizzes.Any())
-{
+    <h4>Questions</h4>
+    @{
+        int questionIndex = 1;
+    }
+    @foreach (var question in Model.Questions)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Question @questionIndex</h5>
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        Question
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(modelItem => question.Text)
+                    </dd>
+                    <dt class="col-sm-2">
+                        Option A
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(modelItem => question.OptionA)
+                    </dd>
+                    <dt class="col-sm-2">
+                        Option B
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(modelItem => question.OptionB)
+                    </dd>
+                    <dt class="col-sm-2">
+                        Option C
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(modelItem => question.OptionC)
+                    </dd>
+                    <dt class="col-sm-2">
+                        Option D
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(modelItem => question.OptionD)
+                    </dd>
+                    <dt class="col-sm-2">
+                        Correct Option
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(modelItem => question.CorrectOption)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        questionIndex++;
+    }
+
+    <h4>Students' Scores</h4>
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Student</th>
                 <th>Score</th>
             </tr>
         </thead>
@@ -34,21 +82,10 @@
             @foreach (var studentQuiz in Model.StudentQuizzes)
             {
                 <tr>
-                    @if (studentQuiz.Student != null)
-                    {
-                        <td>@studentQuiz.Student.Name</td>
-                    }
-                    else
-                    {
-                        <td>N/A</td>
-                    }
+                    <td>@studentQuiz.Student.Name</td>
                     <td>@studentQuiz.Score</td>
                 </tr>
             }
         </tbody>
     </table>
-}
-else
-{
-    <p>No students have attempted this quiz yet.</p>
-}
+</div>

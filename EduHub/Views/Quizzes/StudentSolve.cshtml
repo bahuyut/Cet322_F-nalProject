@@ -9,12 +9,16 @@
 <h4>@Model.Title</h4>
 <hr />
 <form asp-action="Solve" asp-route-id="@Model.Id" method="post">
+    @{
+        int questionIndex = 1;
+    }
     @foreach (var question in Model.Questions)
     {
         <div class="card mb-3">
             <div class="card-body">
+                <h5 class="card-title">Question @questionIndex</h5>
                 <div class="form-group">
-                    <label class="font-weight-bold">@question.Text</label>
+                    <label>@question.Text</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="Answers[@question.Id]" value="A" />
                         <label class="form-check-label">@question.OptionA</label>
@@ -34,6 +38,7 @@
                 </div>
             </div>
         </div>
+        questionIndex++;
     }
     <input type="submit" value="Submit" class="btn btn-primary" />
 </form>
