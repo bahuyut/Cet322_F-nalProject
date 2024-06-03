@@ -77,6 +77,19 @@ namespace EduHub.Controllers
                 quiz.TeacherId = user.Id;
                 _context.Add(quiz);
                 await _context.SaveChangesAsync();
+
+                // Yeni duyuru oluştur
+                var announcement = new Announcement
+                {
+                    UploaderName = user.Name,
+                    Title = "Yeni Quiz Eklendi",
+                    Content = "Yeni bir quiz eklendi: " + quiz.Title,
+                    PostedDate = DateTime.Now
+                };
+
+                _context.Add(announcement);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             return View(quiz);
