@@ -48,6 +48,7 @@ namespace EduHub.Controllers
             return Forbid();
         }
 
+
         // GET: Quizzes/Create
         public async Task<IActionResult> Create()
         {
@@ -80,6 +81,7 @@ namespace EduHub.Controllers
             }
             return View(quiz);
         }
+
 
         // GET: Quizzes/Details/5
         public async Task<IActionResult> Details(int? id)
