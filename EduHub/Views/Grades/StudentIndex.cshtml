@@ -6,28 +6,24 @@
 
 <h2>My Grades</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Assignment
-            </th>
-            <th>
-                Score
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var grade in Model)
-        {
-            <tr>
-                <td>
-                    @grade.Assignment.Title
-                </td>
-                <td>
-                    @grade.Score
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="card">
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Assignment</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var grade in Model)
+                {
+                    <tr>
+                        <td>@grade.Assignment.Title</td>
+                        <td>@grade.Score</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

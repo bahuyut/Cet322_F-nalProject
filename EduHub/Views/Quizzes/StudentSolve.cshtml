@@ -11,23 +11,27 @@
 <form asp-action="Solve" asp-route-id="@Model.Id" method="post">
     @foreach (var question in Model.Questions)
     {
-        <div class="form-group">
-            <label>@question.Text</label>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="Answers[@question.Id]" value="A" />
-                <label class="form-check-label">@question.OptionA</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="Answers[@question.Id]" value="B" />
-                <label class="form-check-label">@question.OptionB</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="Answers[@question.Id]" value="C" />
-                <label class="form-check-label">@question.OptionC</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="Answers[@question.Id]" value="D" />
-                <label class="form-check-label">@question.OptionD</label>
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="form-group">
+                    <label class="font-weight-bold">@question.Text</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Answers[@question.Id]" value="A" />
+                        <label class="form-check-label">@question.OptionA</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Answers[@question.Id]" value="B" />
+                        <label class="form-check-label">@question.OptionB</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Answers[@question.Id]" value="C" />
+                        <label class="form-check-label">@question.OptionC</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Answers[@question.Id]" value="D" />
+                        <label class="form-check-label">@question.OptionD</label>
+                    </div>
+                </div>
             </div>
         </div>
     }

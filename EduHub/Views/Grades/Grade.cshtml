@@ -6,33 +6,33 @@
 
 <h2>Grade Assignments</h2>
 
-<form asp-action="Grade">
-    <input type="hidden" name="studentId" value="@ViewBag.StudentId" />
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Assignment
-                </th>
-                <th>
-                    Score
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var assignment in ViewBag.Assignments)
-            {
-                <tr>
-                    <td>
-                        @assignment.Title
-                        <input type="hidden" name="assignmentId" value="@assignment.Id" />
-                    </td>
-                    <td>
-                        <input type="number" name="score" step="0.01" required />
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Grade">
+            <input type="hidden" name="studentId" value="@ViewBag.StudentId" />
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Assignment</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var assignment in ViewBag.Assignments)
+                    {
+                        <tr>
+                            <td>
+                                @assignment.Title
+                                <input type="hidden" name="assignmentId" value="@assignment.Id" />
+                            </td>
+                            <td>
+                                <input type="number" name="score" step="0.01" class="form-control" required />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

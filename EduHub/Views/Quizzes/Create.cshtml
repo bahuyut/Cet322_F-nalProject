@@ -15,6 +15,7 @@
 
     <div id="questions-container">
         <div class="question-form">
+            <h4>Question 1</h4>
             <div class="form-group">
                 <label class="control-label">Question</label>
                 <input name="Questions[0].Text" class="form-control" />
@@ -62,54 +63,57 @@
 </form>
 
 @section Scripts {
-    <script>let questionIndex = 1;
+    <script>
+        let questionIndex = 1;
         document.getElementById('add-question-button').addEventListener('click', function () {
             const container = document.getElementById('questions-container');
             const questionDiv = document.createElement('div');
             questionDiv.classList.add('question-form');
             questionDiv.innerHTML = `
-                    <hr />
-                    <div class="form-group">
-                        <label class="control-label">Question</label>
-                        <input name="Questions[${questionIndex}].Text" class="form-control" />
+                <hr />
+                <h4>Question ${questionIndex + 1}</h4>
+                <div class="form-group">
+                    <label class="control-label">Question</label>
+                    <input name="Questions[${questionIndex}].Text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Option A</label>
+                    <input name="Questions[${questionIndex}].OptionA" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Option B</label>
+                    <input name="Questions[${questionIndex}].OptionB" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Option C</label>
+                    <input name="Questions[${questionIndex}].OptionC" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Option D</label>
+                    <input name="Questions[${questionIndex}].OptionD" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Correct Option</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Questions[${questionIndex}].CorrectOption" value="A" />
+                        <label class="form-check-label">Option A</label>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Option A</label>
-                        <input name="Questions[${questionIndex}].OptionA" class="form-control" />
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Questions[${questionIndex}].CorrectOption" value="B" />
+                        <label class="form-check-label">Option B</label>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Option B</label>
-                        <input name="Questions[${questionIndex}].OptionB" class="form-control" />
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Questions[${questionIndex}].CorrectOption" value="C" />
+                        <label class="form-check-label">Option C</label>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Option C</label>
-                        <input name="Questions[${questionIndex}].OptionC" class="form-control" />
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="Questions[${questionIndex}].CorrectOption" value="D" />
+                        <label class="form-check-label">Option D</label>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Option D</label>
-                        <input name="Questions[${questionIndex}].OptionD" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Correct Option</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Questions[${questionIndex}].CorrectOption" value="A" />
-                            <label class="form-check-label">Option A</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Questions[${questionIndex}].CorrectOption" value="B" />
-                            <label class="form-check-label">Option B</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Questions[${questionIndex}].CorrectOption" value="C" />
-                            <label class="form-check-label">Option C</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Questions[${questionIndex}].CorrectOption" value="D" />
-                            <label class="form-check-label">Option D</label>
-                        </div>
-                    </div>
-                `;
+                </div>
+            `;
             container.appendChild(questionDiv);
             questionIndex++;
-        });</script>
+        });
+    </script>
 }

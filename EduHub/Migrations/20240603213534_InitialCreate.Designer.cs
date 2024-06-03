@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EduHub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240603145225_InitialCreate")]
+    [Migration("20240603213534_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

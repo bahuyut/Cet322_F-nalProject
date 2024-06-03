@@ -107,6 +107,7 @@ namespace EduHub.Controllers
             var quiz = await _context.Quizzes
                 .Include(q => q.Questions)
                 .Include(q => q.StudentQuizzes)
+                    .ThenInclude(sq => sq.Student) // Student nesnesini de dahil ediyoruz
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (quiz == null)
@@ -115,6 +116,11 @@ namespace EduHub.Controllers
             }
 
             var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Forbid();
+            }
+
             if (user.UserType == "teacher" && quiz.TeacherId == user.Id)
             {
                 return View("TeacherDetails", quiz);
@@ -132,6 +138,7 @@ namespace EduHub.Controllers
 
             return Forbid();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -164,7 +171,8 @@ namespace EduHub.Controllers
             {
                 StudentId = user.Id,
                 QuizId = quiz.Id,
-                Score = score
+                Score = score,
+                Student = user // Öğrenci nesnesini ekliyoruz
             };
 
             _context.StudentQuizzes.Add(studentQuiz);
@@ -172,6 +180,9 @@ namespace EduHub.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+
+
 
 
         public class QuizSolveViewModel

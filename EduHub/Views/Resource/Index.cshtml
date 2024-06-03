@@ -1,32 +1,29 @@
 @model IEnumerable<EduHub.Models.Resource>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Resources";
 }
 
-<h1>Index</h1>
+<h1>Resources</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<form asp-controller="Resource" asp-action="Index" method="get">
-    <div class="form-group">
+
+
+<form asp-controller="Resource" asp-action="Index" method="get" class="form-inline mb-3">
+    <div class="form-group mx-sm-3 mb-2">
         <input type="text" name="searchString" class="form-control" placeholder="Search">
     </div>
-    <button type="submit" class="btn btn-primary">Search</button>
+    <button type="submit" class="btn btn-primary mb-2">Search</button>
 </form>
-<table class="table">
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UploaderName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.UploaderName)</th>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+            <th>@Html.DisplayNameFor(model => model.Description)</th>
             <th></th>
             <th></th>
         </tr>
@@ -35,21 +32,17 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>@Html.DisplayFor(modelItem => item.UploaderName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>@Html.DisplayFor(modelItem => item.Description)</td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UploaderName)
+                    <a href="@item.FilePath" class="btn btn-link" download>Download</a>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    <a href="@item.FilePath" download>Download</a>
-                </td>
-                <td>
-                    @if (item.UploaderName == User.Identity.Name) { <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>}
-                    
+                    @if (item.UploaderName == User.Identity.Name)
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                    }
                 </td>
             </tr>
         }
