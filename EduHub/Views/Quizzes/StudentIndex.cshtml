@@ -1,0 +1,41 @@
+@model IEnumerable<EduHub.Models.Quiz>
+
+@{
+    ViewData["Title"] = "Quizzes";
+}
+
+<h2>Quizzes</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Score</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                <td>
+                    @{
+                        var studentQuiz = item.StudentQuizzes?.FirstOrDefault(sq => sq.StudentId == User.Identity.Name);
+                        if (studentQuiz != null)
+                        {
+                            @studentQuiz.Score
+                        }
+                        else
+                        {
+                            <text>N/A</text>
+                        }
+                    }
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">View</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

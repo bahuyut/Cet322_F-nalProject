@@ -163,6 +163,59 @@ namespace EduHub.Migrations
                     b.ToTable("Grades");
                 });
 
+            modelBuilder.Entity("EduHub.Models.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CorrectOption")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OptionA")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OptionB")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OptionC")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OptionD")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("QuizId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuizId");
+
+                    b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("EduHub.Models.Quiz", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("TeacherId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("Quizzes");
+                });
+
             modelBuilder.Entity("EduHub.Models.Resource", b =>
                 {
                     b.Property<int>("Id")
@@ -184,6 +237,30 @@ namespace EduHub.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Resources");
+                });
+
+            modelBuilder.Entity("EduHub.Models.StudentQuiz", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("QuizId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("Score")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("StudentId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuizId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("StudentQuizzes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -338,6 +415,43 @@ namespace EduHub.Migrations
                     b.Navigation("Assignment");
                 });
 
+            modelBuilder.Entity("EduHub.Models.Question", b =>
+                {
+                    b.HasOne("EduHub.Models.Quiz", "Quiz")
+                        .WithMany("Questions")
+                        .HasForeignKey("QuizId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Quiz");
+                });
+
+            modelBuilder.Entity("EduHub.Models.Quiz", b =>
+                {
+                    b.HasOne("EduHub.Models.EduUser", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId");
+
+                    b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("EduHub.Models.StudentQuiz", b =>
+                {
+                    b.HasOne("EduHub.Models.Quiz", "Quiz")
+                        .WithMany("StudentQuizzes")
+                        .HasForeignKey("QuizId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EduHub.Models.EduUser", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId");
+
+                    b.Navigation("Quiz");
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -392,6 +506,13 @@ namespace EduHub.Migrations
             modelBuilder.Entity("EduHub.Models.EduUser", b =>
                 {
                     b.Navigation("Assignments");
+                });
+
+            modelBuilder.Entity("EduHub.Models.Quiz", b =>
+                {
+                    b.Navigation("Questions");
+
+                    b.Navigation("StudentQuizzes");
                 });
 #pragma warning restore 612, 618
         }

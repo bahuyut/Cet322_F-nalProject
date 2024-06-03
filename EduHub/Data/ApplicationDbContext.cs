@@ -16,5 +16,11 @@ public class ApplicationDbContext : IdentityDbContext<EduUser>
     public DbSet<Resource> Resources { get; set; }
     public DbSet<Assignment> Assignments { get; set; }
     public DbSet<Grade> Grades { get; set; }
+    public DbSet<Quiz> Quizzes { get; set; }
+    public DbSet<Question> Questions { get; set; }
+    public DbSet<StudentQuiz> StudentQuizzes { get; set; }
+    
+
+    
 }
 

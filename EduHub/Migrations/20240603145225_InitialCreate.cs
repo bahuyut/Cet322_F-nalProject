@@ -214,6 +214,25 @@ namespace EduHub.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Quizzes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(type: "TEXT", nullable: true),
+                    TeacherId = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Quizzes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Quizzes_AspNetUsers_TeacherId",
+                        column: x => x.TeacherId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Grades",
                 columns: table => new
                 {
@@ -230,6 +249,57 @@ namespace EduHub.Migrations
                         name: "FK_Grades_Assignments_AssignmentId",
                         column: x => x.AssignmentId,
                         principalTable: "Assignments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Questions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Text = table.Column<string>(type: "TEXT", nullable: true),
+                    OptionA = table.Column<string>(type: "TEXT", nullable: true),
+                    OptionB = table.Column<string>(type: "TEXT", nullable: true),
+                    OptionC = table.Column<string>(type: "TEXT", nullable: true),
+                    OptionD = table.Column<string>(type: "TEXT", nullable: true),
+                    CorrectOption = table.Column<string>(type: "TEXT", nullable: true),
+                    QuizId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Questions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Questions_Quizzes_QuizId",
+                        column: x => x.QuizId,
+                        principalTable: "Quizzes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentQuizzes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    StudentId = table.Column<string>(type: "TEXT", nullable: true),
+                    QuizId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Score = table.Column<double>(type: "REAL", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentQuizzes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StudentQuizzes_AspNetUsers_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_StudentQuizzes_Quizzes_QuizId",
+                        column: x => x.QuizId,
+                        principalTable: "Quizzes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -280,6 +350,26 @@ namespace EduHub.Migrations
                 name: "IX_Grades_AssignmentId",
                 table: "Grades",
                 column: "AssignmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Questions_QuizId",
+                table: "Questions",
+                column: "QuizId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Quizzes_TeacherId",
+                table: "Quizzes",
+                column: "TeacherId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentQuizzes_QuizId",
+                table: "StudentQuizzes",
+                column: "QuizId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentQuizzes_StudentId",
+                table: "StudentQuizzes",
+                column: "StudentId");
         }
 
         /// <inheritdoc />
@@ -307,13 +397,22 @@ namespace EduHub.Migrations
                 name: "Grades");
 
             migrationBuilder.DropTable(
+                name: "Questions");
+
+            migrationBuilder.DropTable(
                 name: "Resources");
+
+            migrationBuilder.DropTable(
+                name: "StudentQuizzes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Assignments");
+
+            migrationBuilder.DropTable(
+                name: "Quizzes");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

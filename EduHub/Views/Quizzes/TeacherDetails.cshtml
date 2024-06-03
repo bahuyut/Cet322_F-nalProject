@@ -1,0 +1,82 @@
+@model EduHub.Models.Quiz
+
+@{
+    ViewData["Title"] = "Quiz Details";
+}
+
+<h2>Quiz Details</h2>
+
+<div>
+    <h4>Quiz</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Title
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+    </dl>
+
+    <h4>Questions</h4>
+    @foreach (var question in Model.Questions)
+    {
+        <dl class="row">
+            <dt class="col-sm-2">
+                Question
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => question.Text)
+            </dd>
+            <dt class="col-sm-2">
+                Option A
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => question.OptionA)
+            </dd>
+            <dt class="col-sm-2">
+                Option B
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => question.OptionB)
+            </dd>
+            <dt class="col-sm-2">
+                Option C
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => question.OptionC)
+            </dd>
+            <dt class="col-sm-2">
+                Option D
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => question.OptionD)
+            </dd>
+            <dt class="col-sm-2">
+                Correct Option
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => question.CorrectOption)
+            </dd>
+        </dl>
+    }
+
+    <h4>Students' Scores</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var studentQuiz in Model.StudentQuizzes)
+            {
+                <tr>
+                    <td>@studentQuiz.Student.UserName</td>
+                    <td>@studentQuiz.Score</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

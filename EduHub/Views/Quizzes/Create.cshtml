@@ -1,0 +1,91 @@
+@model EduHub.Models.Quiz
+
+@{
+    ViewData["Title"] = "Create Quiz";
+}
+
+<h2>Create Quiz</h2>
+
+<h4>Quiz</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div id="questions-container">
+                <div class="question">
+                    <div class="form-group">
+                        <label class="control-label">Question</label>
+                        <input name="Questions[0].Text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Option A</label>
+                        <input name="Questions[0].OptionA" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Option B</label>
+                        <input name="Questions[0].OptionB" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Option C</label>
+                        <input name="Questions[0].OptionC" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Option D</label>
+                        <input name="Questions[0].OptionD" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Correct Option</label>
+                        <input name="Questions[0].CorrectOption" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="add-question" class="btn btn-primary">Add Question</button>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">let questionIndex = 1;
+
+        document.getElementById('add-question').addEventListener('click', function () {
+            const container = document.getElementById('questions-container');
+            const questionDiv = document.createElement('div');
+            questionDiv.classList.add('question');
+            questionDiv.innerHTML = `
+                    <div class="form-group">
+                        <label class="control-label">Question</label>
+                        <input name="Questions[${questionIndex}].Text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Option A</label>
+                        <input name="Questions[${questionIndex}].OptionA" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Option B</label>
+                        <input name="Questions[${questionIndex}].OptionB" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Option C</label>
+                        <input name="Questions[${questionIndex}].OptionC" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Option D</label>
+                        <input name="Questions[${questionIndex}].OptionD" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Correct Option</label>
+                        <input name="Questions[${questionIndex}].CorrectOption" class="form-control" />
+                    </div>
+                `;
+            container.appendChild(questionDiv);
+            questionIndex++;
+        });</script>
+}
