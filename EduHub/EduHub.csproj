@@ -36,4 +36,10 @@
     <Folder Include="Views\Grades\" />
     <Folder Include="Views\Quizzes\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\css\animations.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\css\animations.css" />
+  </ItemGroup>
 </Project>

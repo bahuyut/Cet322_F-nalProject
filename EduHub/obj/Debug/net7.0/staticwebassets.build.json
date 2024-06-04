@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QUE5eq9jbAGdQXosCcirgMCd0np+eaqTnIEiuK323bQ=",
+  "Hash": "4v7u+EyKrXg0tsgU1BKX5GvQpzN33zz+IdWSzVHm4d0=",
   "Source": "EduHub",
   "BasePath": "_content/EduHub",
   "Mode": "Default",
@@ -1088,6 +1088,23 @@
       "OriginalItemSpec": "wwwroot/.DS_Store"
     },
     {
+      "Identity": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/background.JPG",
+      "SourceId": "EduHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/",
+      "BasePath": "_content/EduHub",
+      "RelativePath": "background.JPG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/background.JPG"
+    },
+    {
       "Identity": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/css/site.css",
       "SourceId": "EduHub",
       "SourceType": "Discovered",
@@ -2125,6 +2142,23 @@
       "OriginalItemSpec": "wwwroot/uploads/.DS_Store"
     },
     {
+      "Identity": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/uploads/54fedb88-b43a-4aef-a2eb-e6a15e4aaf6a_Artboard 1.pdf",
+      "SourceId": "EduHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/",
+      "BasePath": "_content/EduHub",
+      "RelativePath": "uploads/54fedb88-b43a-4aef-a2eb-e6a15e4aaf6a_Artboard 1.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/54fedb88-b43a-4aef-a2eb-e6a15e4aaf6a_Artboard 1.pdf"
+    },
+    {
       "Identity": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/uploads/7028542d-9900-4585-b1c5-35c324efbff1_Artboard 1.pdf",
       "SourceId": "EduHub",
       "SourceType": "Discovered",
@@ -2210,6 +2244,40 @@
       "OriginalItemSpec": "wwwroot/uploads/assignments/ödev_1_deneme1@gmail.com_20240604020230_Artboard 1.pdf"
     },
     {
+      "Identity": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/uploads/assignments/ödev_1_deneme1@gmail.com_20240604224726_cv.pdf",
+      "SourceId": "EduHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/",
+      "BasePath": "_content/EduHub",
+      "RelativePath": "uploads/assignments/ödev_1_deneme1@gmail.com_20240604224726_cv.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/assignments/ödev_1_deneme1@gmail.com_20240604224726_cv.pdf"
+    },
+    {
+      "Identity": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/uploads/assignments/ödev_1_deneme2@gmail.com_20240604154849_Artboard 1.pdf",
+      "SourceId": "EduHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/",
+      "BasePath": "_content/EduHub",
+      "RelativePath": "uploads/assignments/ödev_1_deneme2@gmail.com_20240604154849_Artboard 1.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/assignments/ödev_1_deneme2@gmail.com_20240604154849_Artboard 1.pdf"
+    },
+    {
       "Identity": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/uploads/assignments/ödev_2_deneme2@gmail.com_20240604024146_Artboard 1.pdf",
       "SourceId": "EduHub",
       "SourceType": "Discovered",
@@ -2225,6 +2293,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/uploads/assignments/ödev_2_deneme2@gmail.com_20240604024146_Artboard 1.pdf"
+    },
+    {
+      "Identity": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/uploads/e84aa527-35b9-4dd0-ba40-fd56384aa8c5_Artboard 1.pdf",
+      "SourceId": "EduHub",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/bayramalihuyut/Desktop/8.dönem/cet322/FinalProject/EduHub/EduHub/wwwroot/",
+      "BasePath": "_content/EduHub",
+      "RelativePath": "uploads/e84aa527-35b9-4dd0-ba40-fd56384aa8c5_Artboard 1.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/uploads/e84aa527-35b9-4dd0-ba40-fd56384aa8c5_Artboard 1.pdf"
     }
   ]
 }

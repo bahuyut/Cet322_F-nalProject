@@ -1,32 +1,45 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using EduHub.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Linq;
+using System.Threading.Tasks;
+using System;
+using EduHub.Data;
 
-namespace EduHub.Controllers;
-
-public class HomeController : Controller
+namespace EduHub.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    [Authorize]
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        private readonly UserManager<EduUser> _userManager;
+        private readonly ApplicationDbContext _context;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public HomeController(UserManager<EduUser> userManager, ApplicationDbContext context)
+        {
+            _userManager = userManager;
+            _context = context;
+        }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        public async Task<IActionResult> Index()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Challenge();
+            }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var userName = user.Name ?? "Kullanıcı";
+            var announcements = _context.Announcements.OrderByDescending(a => a.PostedDate).Take(3).ToList();
+
+            var model = new HomeViewModel
+            {
+                UserName = userName,
+                Announcements = announcements,
+                CurrentDateTime = DateTime.Now // Şu anki tarih ve saat bilgisi
+            };
+
+            return View(model);
+        }
     }
 }
-

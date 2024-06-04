@@ -1,9 +1,133 @@
-﻿@{
+﻿@model EduHub.Models.HomeViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<style>
+    body {
+        background: url('/background.JPG') no-repeat center top fixed;
+        background-size: cover;
+    }
 
+    .card {
+        cursor: pointer;
+        transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Hover durumunda arka plan ve yazı rengini değiştirme için */
+        text-align: center; /* Yazıları ortalamak için */
+        background-color: rgba(255, 255, 255, 0.8); /* Arka planı yarı saydam beyaz yaparak okunabilirliği arttırma */
+        border-radius: 5px; /* Köşeleri yuvarlamak için */
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hover durumunda gölge */
+        background-color: rgba(0, 123, 255, 0.8); /* Hover durumunda arka plan rengini mavi yapma */
+        color: white; /* Hover durumunda yazı rengini beyaz yapma */
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100px; /* Yüksekliği ayarlamak için */
+    }
+
+    .announcements-container {
+        border: 1px solid #ddd; /* Çerçeve için */
+        border-radius: 5px; /* Köşeleri yuvarlamak için */
+        padding: 20px; /* İçerik kenar boşlukları */
+        margin-top: 20px; /* Üst boşluk */
+        background-color: rgba(255, 255, 255, 0.8); /* Arka planı yarı saydam beyaz yaparak okunabilirliği arttırma */
+    }
+
+    .announcements-container h3 {
+        margin-bottom: 20px; /* Başlık alt boşluk */
+    }
+
+    .show-all-btn {
+        display: flex;
+        justify-content: center; /* Butonu ortalamak için */
+        margin-top: 20px; /* Üst boşluk */
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px; /* Alt boşluğu iki katına çıkar */
+        margin-top: 40px; 
+        font-size: 2rem; 
+    }
+
+    .date-time {
+        font-size: 1rem; 
+        color: #888;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="header animate__animated animate__fadeInDown">
+        <h2>Merhaba @Model.UserName!</h2>
+        <div class="date-time">
+            @Model.CurrentDateTime.ToString("dd MMMM yyyy HH:mm")
+        </div>
+    </div>
+
+    <div class="announcements-container animate__animated animate__fadeInDown animate__delay-1s">
+        <h3>Duyurular</h3>
+        @if (Model.Announcements.Any())
+        {
+            <ul class="list-group">
+                @foreach (var announcement in Model.Announcements)
+                {
+                    <li class="list-group-item">
+                        <h5>@announcement.Title</h5>
+                        <p>@announcement.Content</p>
+                        <small class="text-muted">Posted by @announcement.UploaderName on @announcement.PostedDate.ToShortDateString()</small>
+                    </li>
+                }
+            </ul>
+            <div class="show-all-btn">
+                <a class="btn btn-primary" asp-controller="Announcement" asp-action="Index">Show All</a>
+            </div>
+        }
+        else
+        {
+            <p>Yeni bir duyuru yok</p>
+        }
+    </div>
+
+    <div class="row mt-4 animate__animated animate__fadeInDown animate__delay-2s">
+        <div class="col-sm-3 mb-3">
+            <div class="card" onclick="location.href='@Url.Action("Index", "Assignments")'">
+                <div class="card-body">
+                    <h5 class="card-title">Assignments</h5>
+                    <p class="card-text">View your assignments</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 mb-3">
+            <div class="card" onclick="location.href='@Url.Action("Index", "Quizzes")'">
+                <div class="card-body">
+                    <h5 class="card-title">Quizzes</h5>
+                    <p class="card-text">View your quizzes</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 mb-3">
+            <div class="card" onclick="location.href='@Url.Action("Index", "Grades")'">
+                <div class="card-body">
+                    <h5 class="card-title">Grades</h5>
+                    <p class="card-text">View your grades</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 mb-3">
+            <div class="card" onclick="location.href='@Url.Action("Index", "Resource")'">
+                <div class="card-body">
+                    <h5 class="card-title">Resources</h5>
+                    <p class="card-text">View your resources</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
