@@ -1,4 +1,4 @@
-@model List<EduHub.Models.Grade>
+@model IEnumerable<EduHub.Models.Grade>
 
 @{
     ViewData["Title"] = "My Grades";
@@ -6,24 +6,28 @@
 
 <h2>My Grades</h2>
 
-<div class="card">
-    <div class="card-body">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Assignment</th>
-                    <th>Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var grade in Model)
-                {
-                    <tr>
-                        <td>@grade.Assignment.Title</td>
-                        <td>@grade.Score</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Assignment Title
+            </th>
+            <th>
+                Score
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Assignment?.Title
+                </td>
+                <td>
+                    @item.Score
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

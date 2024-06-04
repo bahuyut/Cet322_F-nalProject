@@ -19,8 +19,16 @@ public class ApplicationDbContext : IdentityDbContext<EduUser>
     public DbSet<Quiz> Quizzes { get; set; }
     public DbSet<Question> Questions { get; set; }
     public DbSet<StudentQuiz> StudentQuizzes { get; set; }
-    
 
-    
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Grade>()
+            .HasOne(g => g.Assignment)
+            .WithMany(a => a.Grades)
+            .HasForeignKey(g => g.AssignmentId);
+    }
 }
 

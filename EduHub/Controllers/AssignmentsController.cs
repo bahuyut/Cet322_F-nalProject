@@ -63,10 +63,23 @@ namespace EduHub.Controllers
                 assignment.EduUserId = user.Id;
                 _context.Add(assignment);
                 await _context.SaveChangesAsync();
+
+                // Yeni ödev yüklendiğine dair duyuru ekleyelim
+                var announcement = new Announcement
+                {
+                    UploaderName = user.Name,
+                    Title = "Yeni Ödev Yüklendi",
+                    Content = $"Yeni bir ödev yüklendi: {assignment.Title}",
+                    PostedDate = DateTime.Now
+                };
+                _context.Announcements.Add(announcement);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             return View(assignment);
         }
+
 
         // GET: Assignments/Submit/5
         public async Task<IActionResult> Submit(int? id)

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EduHub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240603213534_InitialCreate")]
+    [Migration("20240603234811_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -410,7 +410,7 @@ namespace EduHub.Migrations
             modelBuilder.Entity("EduHub.Models.Grade", b =>
                 {
                     b.HasOne("EduHub.Models.Assignment", "Assignment")
-                        .WithMany()
+                        .WithMany("Grades")
                         .HasForeignKey("AssignmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -504,6 +504,11 @@ namespace EduHub.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("EduHub.Models.Assignment", b =>
+                {
+                    b.Navigation("Grades");
                 });
 
             modelBuilder.Entity("EduHub.Models.EduUser", b =>

@@ -16,5 +16,6 @@ namespace EduHub.Models
 
         [ForeignKey("EduUserId")]
         public EduUser? EduUser { get; set; }
+        public ICollection<Grade> Grades { get; set; } = new List<Grade>();
     }
 }

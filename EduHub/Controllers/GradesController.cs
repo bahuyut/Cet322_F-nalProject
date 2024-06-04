@@ -79,19 +79,34 @@ namespace EduHub.Controllers
                 return Forbid();
             }
 
-            var grade = new Grade
-            {
-                UserId = studentId,  // GUID formatındaki string türü
-                AssignmentId = assignmentId,
-                Score = score
-            };
+            // Check if the grade already exists for this assignment and student
+            var existingGrade = await _context.Grades
+                .FirstOrDefaultAsync(g => g.UserId == studentId && g.AssignmentId == assignmentId);
 
-            _context.Add(grade);
+            if (existingGrade != null)
+            {
+                // Update the existing grade
+                existingGrade.Score = score;
+                _context.Update(existingGrade);
+            }
+            else
+            {
+                // Add a new grade
+                var grade = new Grade
+                {
+                    UserId = studentId,
+                    AssignmentId = assignmentId,
+                    Score = score
+                };
+
+                _context.Add(grade);
+            }
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(TeacherIndex));
         }
 
-        // GET: Grades/StudentIndex
+
         public async Task<IActionResult> StudentIndex()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -104,7 +119,9 @@ namespace EduHub.Controllers
                 .Where(g => g.UserId == user.Id)
                 .Include(g => g.Assignment)
                 .ToListAsync();
+
             return View(grades);
         }
+
     }
 }
