@@ -1,4 +1,4 @@
-@model List<EduHub.Models.GradeViewModel>
+@model EduHub.Models.Grade
 
 @{
     ViewData["Title"] = "Grade Assignments";
@@ -18,15 +18,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for (int i = 0; i < Model.Count; i++)
+                    @foreach (var assignment in ViewBag.Assignments)
                     {
                         <tr>
                             <td>
-                                @Model[i].Assignment.Title
-                                <input type="hidden" name="grades[@i].AssignmentId" value="@Model[i].Assignment.Id" />
+                                @assignment.Title
+                                <input type="hidden" name="assignmentIds" value="@assignment.Id" />
                             </td>
                             <td>
-                                <input type="number" name="grades[@i].Score" step="0.01" class="form-control" required />
+                                <input type="number" name="scores" step="0.01" class="form-control" required />
                             </td>
                         </tr>
                     }

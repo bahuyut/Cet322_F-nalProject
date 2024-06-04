@@ -68,10 +68,9 @@ namespace EduHub.Controllers
             return View();
         }
 
-        // POST: Grades/Grade/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Grade(string studentId, int assignmentId, double score)
+        public async Task<IActionResult> Grade(string studentId, List<int> assignmentIds, List<double> scores)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null || user.UserType != "teacher")
@@ -79,32 +78,49 @@ namespace EduHub.Controllers
                 return Forbid();
             }
 
-            // Check if the grade already exists for this assignment and student
-            var existingGrade = await _context.Grades
-                .FirstOrDefaultAsync(g => g.UserId == studentId && g.AssignmentId == assignmentId);
-
-            if (existingGrade != null)
+            if (assignmentIds.Count != scores.Count)
             {
-                // Update the existing grade
-                existingGrade.Score = score;
-                _context.Update(existingGrade);
+                ModelState.AddModelError("", "Number of assignments does not match number of scores.");
+                // Eğer sayılar uyuşmazsa, hata mesajı göster ve öğretmeni tekrar notlandırma sayfasına yönlendir.
+                var assignments = await _context.Assignments.ToListAsync();
+                ViewBag.Assignments = assignments;
+                ViewBag.StudentId = studentId;
+                return View();
             }
-            else
-            {
-                // Add a new grade
-                var grade = new Grade
-                {
-                    UserId = studentId,
-                    AssignmentId = assignmentId,
-                    Score = score
-                };
 
-                _context.Add(grade);
+            for (int i = 0; i < assignmentIds.Count; i++)
+            {
+                var assignmentId = assignmentIds[i];
+                var score = scores[i];
+
+                // Check if the grade already exists for this assignment and student
+                var existingGrade = await _context.Grades
+                    .FirstOrDefaultAsync(g => g.UserId == studentId && g.AssignmentId == assignmentId);
+
+                if (existingGrade != null)
+                {
+                    // Update the existing grade
+                    existingGrade.Score = score;
+                    _context.Update(existingGrade);
+                }
+                else
+                {
+                    // Add a new grade
+                    var grade = new Grade
+                    {
+                        UserId = studentId,
+                        AssignmentId = assignmentId,
+                        Score = score
+                    };
+
+                    _context.Add(grade);
+                }
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(TeacherIndex));
         }
+
 
 
         public async Task<IActionResult> StudentIndex()
